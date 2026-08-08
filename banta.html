@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BATNA Builder</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 min-h-screen flex items-center justify-center p-4 font-sans text-slate-800">
+
+    <div class="bg-white max-w-lg w-full rounded-2xl shadow-xl overflow-hidden">
+        <!-- Header -->
+        <div class="bg-indigo-700 p-6 text-white text-center">
+            <h1 class="text-2xl font-bold">BATNA Builder</h1>
+            <p class="text-indigo-200 text-sm mt-1">Calculate your leverage and strip away emotional power.</p>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="bg-slate-200 h-1.5 w-full">
+            <div id="progress-bar" class="bg-indigo-500 h-1.5 transition-all duration-300 w-0"></div>
+        </div>
+
+        <!-- Wizard Content -->
+        <div class="p-6 md:p-8">
+            
+            <!-- Step 1: The Goal -->
+            <div class="wizard-step block" id="step-0">
+                <h2 class="text-xl font-bold mb-2">The Negotiation <span class="text-slate-400 font-normal text-sm">(1/4)</span></h2>
+                <p class="text-slate-600 mb-4">What exactly is the issue on the table? Strip away the emotion and state the objective problem.</p>
+                <label class="block text-sm font-medium mb-1">I am negotiating...</label>
+                <input type="text" id="input-goal" class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none" placeholder="e.g., the timeline for finishing this weekend project">
+            </div>
+
+            <!-- Step 2: Alternatives -->
+            <div class="wizard-step hidden" id="step-1">
+                <h2 class="text-xl font-bold mb-2">Brainstorm Alternatives <span class="text-slate-400 font-normal text-sm">(2/4)</span></h2>
+                <p class="text-slate-600 mb-4">If they refuse to be reasonable and you completely walk away from the conversation, what *else* can you do?</p>
+                <label class="block text-sm font-medium mb-1">My backup options are...</label>
+                <input type="text" id="input-alts" class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none" placeholder="e.g., do it myself, cancel the project entirely, hire someone">
+            </div>
+
+            <!-- Step 3: Select BATNA -->
+            <div class="wizard-step hidden" id="step-2">
+                <h2 class="text-xl font-bold mb-2">Your BATNA <span class="text-slate-400 font-normal text-sm">(3/4)</span></h2>
+                <p class="text-slate-600 mb-4">Look at your list of alternatives. Which single option gives you the most peace of mind and control? This is your source of power.</p>
+                <label class="block text-sm font-medium mb-1">My Best Alternative is to...</label>
+                <input type="text" id="input-batna" class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none" placeholder="e.g., cancel the project entirely and enjoy my weekend">
+            </div>
+
+            <!-- Step 4: Bottom Line -->
+            <div class="wizard-step hidden" id="step-3">
+                <h2 class="text-xl font-bold mb-2">The Walk-Away Point <span class="text-slate-400 font-normal text-sm">(4/4)</span></h2>
+                <p class="text-slate-600 mb-4">What is the absolute minimum you will accept in this negotiation before you stop talking and switch to your BATNA?</p>
+                <label class="block text-sm font-medium mb-1">My absolute bottom line is...</label>
+                <input type="text" id="input-bottom" class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none" placeholder="e.g., they agree to give me until Wednesday">
+            </div>
+
+            <!-- Final Result Step -->
+            <div class="wizard-step hidden" id="step-4">
+                <div class="text-center mb-6">
+                    <div class="bg-indigo-100 text-indigo-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl">🛡️</div>
+                    <h2 class="text-2xl font-bold">Your Power Statement</h2>
+                    <p class="text-slate-600 mt-2">Read this before you engage. This is your logical anchor.</p>
+                </div>
+                
+                <div class="bg-slate-100 border border-slate-300 p-5 rounded-xl">
+                    <p id="final-batna-text" class="text-lg leading-relaxed text-slate-800 font-medium"></p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="bg-slate-50 p-4 border-t border-slate-200 flex justify-between">
+            <button id="btn-prev" class="px-5 py-2.5 text-slate-600 font-medium hover:text-slate-900 hidden transition-colors" onclick="prevStep()">← Back</button>
+            <div class="flex-grow"></div>
+            <button id="btn-next" class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2.5 rounded-lg font-medium shadow-sm transition-colors" onclick="nextStep()">Next Step →</button>
+            <button id="btn-restart" class="bg-slate-200 hover:bg-slate-300 text-slate-800 px-6 py-2.5 rounded-lg font-medium shadow-sm hidden transition-colors" onclick="restartWizard()">Start Over</button>
+        </div>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        let currentStep = 0;
+        const totalSteps = 4; // 0 through 3 are input steps, 4 is the result
+
+        function updateUI() {
+            // Hide all steps
+            document.querySelectorAll('.wizard-step').forEach(step => {
+                step.classList.add('hidden');
+                step.classList.remove('block');
+            });
+
+            // Show current step
+            document.getElementById(`step-${currentStep}`).classList.remove('hidden');
+            document.getElementById(`step-${currentStep}`).classList.add('block');
+
+            // Update Progress Bar
+            const progressPercentage = (currentStep / totalSteps) * 100;
+            document.getElementById('progress-bar').style.width = `${progressPercentage}%`;
+
+            // Handle Buttons
+            const btnPrev = document.getElementById('btn-prev');
+            const btnNext = document.getElementById('btn-next');
+            const btnRestart = document.getElementById('btn-restart');
+
+            // Back button logic
+            if (currentStep === 0 || currentStep === totalSteps) {
+                btnPrev.classList.add('hidden');
+            } else {
+                btnPrev.classList.remove('hidden');
+            }
+
+            // Next / Generate / Restart button logic
+            if (currentStep === totalSteps) {
+                // We are on the result page
+                btnNext.classList.add('hidden');
+                btnRestart.classList.remove('hidden');
+                generateBatnaText();
+            } else if (currentStep === totalSteps - 1) {
+                // On the last input step
+                btnNext.innerText = "Lock in BATNA 🔒";
+                btnNext.classList.remove('hidden');
+                btnRestart.classList.add('hidden');
+            } else {
+                // Standard input steps
+                btnNext.innerText = "Next Step →";
+                btnNext.classList.remove('hidden');
+                btnRestart.classList.add('hidden');
+            }
+        }
+
+        function nextStep() {
+            // Basic validation
+            const inputs = ['input-goal', 'input-alts', 'input-batna', 'input-bottom'];
+            if (currentStep < totalSteps) {
+                const currentInput = document.getElementById(inputs[currentStep]).value.trim();
+                if (!currentInput) { 
+                    alert("Please fill out this step to continue. Clarity is your leverage.");
+                    return;
+                }
+                currentStep++;
+                updateUI();
+            }
+        }
+
+        function prevStep() {
+            if (currentStep > 0) {
+                currentStep--;
+                updateUI();
+            }
+        }
+
+        function restartWizard() {
+            // Clear inputs
+            document.getElementById('input-goal').value = '';
+            document.getElementById('input-alts').value = '';
+            document.getElementById('input-batna').value = '';
+            document.getElementById('input-bottom').value = '';
+            
+            currentStep = 0;
+            updateUI();
+        }
+
+        function generateBatnaText() {
+            const goal = document.getElementById('input-goal').value.trim();
+            const batna = document.getElementById('input-batna').value.trim();
+            const bottom = document.getElementById('input-bottom').value.trim();
+
+            const statement = `I am entering this conversation to negotiate <span class="text-indigo-700 font-bold">${goal}</span>. <br><br>
+            I will remain completely calm because they do not control me. The absolute minimum I will accept is <span class="text-indigo-700 font-bold">${bottom}</span>. <br><br>
+            If they use emotional manipulation or refuse to meet my bottom line, I am not trapped. I will immediately end the conversation and <span class="text-indigo-700 font-bold">${batna}</span>.`;
+            
+            document.getElementById('final-batna-text').innerHTML = statement;
+        }
+    </script>
+</body>
+</html>

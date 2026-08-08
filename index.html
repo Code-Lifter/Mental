@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frameworks & Resources</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen">
+    
+    <div class="max-w-2xl mx-auto p-4 md:p-8 mt-6 md:mt-10">
+        <!-- Header -->
+        <header class="mb-8 text-center">
+            <h1 class="text-3xl font-bold text-indigo-600 mb-2">Frameworks Hub</h1>
+            <p class="text-slate-500">Select a psychological tool or framework below.</p>
+        </header>
+
+        <!-- Search Bar -->
+        <div class="mb-6">
+            <input 
+                type="text" 
+                id="searchInput" 
+                placeholder="Search by name or use case..." 
+                class="w-full p-4 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-400 shadow-sm text-lg transition-shadow"
+            >
+        </div>
+
+        <!-- Links List -->
+        <nav>
+            <ul id="resourceList" class="space-y-4">
+                
+                <!-- Banta -->
+                <li class="resource-item">
+                    <a href="banta.html" class="block p-5 bg-white rounded-xl shadow-sm border border-slate-100 hover:shadow-md hover:border-indigo-300 transition-all">
+                        <div class="flex justify-between items-center border-b border-slate-100 pb-2 mb-2">
+                            <h2 class="text-xl font-semibold text-slate-700">Banta (Banter/Rapport)</h2>
+                            <span class="text-xs text-indigo-400 font-mono bg-indigo-50 px-2 py-1 rounded">banta.html</span>
+                        </div>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            <strong class="text-slate-800">When to use:</strong> Use this framework for engaging in lighthearted conversation, building initial rapport, and navigating casual social interactions to build connection.
+                        </p>
+                    </a>
+                </li>
+
+                <!-- C-PTSD -->
+                <li class="resource-item">
+                    <a href="c-ptsd.html" class="block p-5 bg-white rounded-xl shadow-sm border border-slate-100 hover:shadow-md hover:border-indigo-300 transition-all">
+                        <div class="flex justify-between items-center border-b border-slate-100 pb-2 mb-2">
+                            <h2 class="text-xl font-semibold text-slate-700">C-PTSD</h2>
+                            <span class="text-xs text-indigo-400 font-mono bg-indigo-50 px-2 py-1 rounded">c-ptsd.html</span>
+                        </div>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            <strong class="text-slate-800">When to use:</strong> Use this resource when you are managing emotional flashbacks, navigating psychological triggers, or seeking grounding strategies related to complex trauma.
+                        </p>
+                    </a>
+                </li>
+
+                <!-- DEAR MAN -->
+                <li class="resource-item">
+                    <a href="dear-man.html" class="block p-5 bg-white rounded-xl shadow-sm border border-slate-100 hover:shadow-md hover:border-indigo-300 transition-all">
+                        <div class="flex justify-between items-center border-b border-slate-100 pb-2 mb-2">
+                            <h2 class="text-xl font-semibold text-slate-700">DEAR MAN</h2>
+                            <span class="text-xs text-indigo-400 font-mono bg-indigo-50 px-2 py-1 rounded">dear-man.html</span>
+                        </div>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            <strong class="text-slate-800">When to use:</strong> Use this DBT (Dialectical Behavior Therapy) skill when you need to effectively ask for what you want, set a firm boundary, or say "no" to a request while preserving the relationship and your self-respect.
+                        </p>
+                    </a>
+                </li>
+
+                <!-- Emotion Check -->
+                <li class="resource-item">
+                    <a href="emotion-check.html" class="block p-5 bg-white rounded-xl shadow-sm border border-slate-100 hover:shadow-md hover:border-indigo-300 transition-all">
+                        <div class="flex justify-between items-center border-b border-slate-100 pb-2 mb-2">
+                            <h2 class="text-xl font-semibold text-slate-700">Emotion Check</h2>
+                            <span class="text-xs text-indigo-400 font-mono bg-indigo-50 px-2 py-1 rounded">emotion-check.html</span>
+                        </div>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            <strong class="text-slate-800">When to use:</strong> Use this tool to "check the facts" when you are experiencing overwhelming feelings. It helps you determine if your emotional reaction matches the actual reality of the situation.
+                        </p>
+                    </a>
+                </li>
+
+                <!-- Emotions -->
+                <li class="resource-item">
+                    <a href="emotions.html" class="block p-5 bg-white rounded-xl shadow-sm border border-slate-100 hover:shadow-md hover:border-indigo-300 transition-all">
+                        <div class="flex justify-between items-center border-b border-slate-100 pb-2 mb-2">
+                            <h2 class="text-xl font-semibold text-slate-700">Emotions Guide</h2>
+                            <span class="text-xs text-indigo-400 font-mono bg-indigo-50 px-2 py-1 rounded">emotions.html</span>
+                        </div>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            <strong class="text-slate-800">When to use:</strong> Use this baseline guide when you need help identifying, labeling, and processing what you are currently feeling in your mind and body.
+                        </p>
+                    </a>
+                </li>
+
+            </ul>
+        </nav>
+        
+        <!-- Empty State (Hidden by default) -->
+        <div id="noResults" class="hidden text-center text-slate-500 py-8">
+            <p>No resources match your search.</p>
+        </div>
+    </div>
+
+    <!-- JavaScript for Search Filtering -->
+    <script>
+        document.getElementById('searchInput').addEventListener('keyup', function() {
+            const filter = this.value.toLowerCase();
+            const items = document.querySelectorAll('.resource-item');
+            const noResultsMessage = document.getElementById('noResults');
+            let visibleCount = 0;
+
+            items.forEach(function(item) {
+                // Now searches through the title, filename, AND the explanation
+                const text = item.textContent.toLowerCase();
+                if (text.includes(filter)) {
+                    item.style.display = '';
+                    visibleCount++;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            if (visibleCount === 0) {
+                noResultsMessage.classList.remove('hidden');
+            } else {
+                noResultsMessage.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>

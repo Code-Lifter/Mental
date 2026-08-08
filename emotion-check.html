@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emotional Check-In Wizard</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-100 min-h-screen flex items-center justify-center p-4 font-sans text-slate-800">
+
+    <div class="bg-white max-w-lg w-full rounded-2xl shadow-xl overflow-hidden border border-slate-100">
+        <!-- Header -->
+        <div class="bg-indigo-600 p-6 text-white text-center relative">
+            <h1 class="text-2xl font-bold tracking-tight">Emotional Check-In Wizard</h1>
+            <p class="text-indigo-100 text-sm mt-1">Untangle how you feel without pressure or judgment.</p>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="bg-slate-200 h-1.5 w-full">
+            <div id="progress-bar" class="bg-indigo-500 h-1.5 transition-all duration-300 w-0"></div>
+        </div>
+
+        <!-- Wizard Content -->
+        <div class="p-6 md:p-8">
+            
+            <!-- Step 1: Physical Baseline (HALT) -->
+            <div class="wizard-step block" id="step-0">
+                <div class="flex items-center justify-between mb-2">
+                    <h2 class="text-xl font-bold text-slate-800">Physical Baseline</h2>
+                    <span class="text-xs font-semibold text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-full">Step 1 of 4</span>
+                </div>
+                <p class="text-slate-600 text-sm mb-5">Before diving into complex emotions, let's check your body's current battery status.</p>
+                
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1.5">Energy & Sleep</label>
+                        <select id="input-halt-sleep" class="w-full p-3 bg-slate-50 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none text-slate-700">
+                            <option value="rested">Rested / Slept okay</option>
+                            <option value="exhausted">Exhausted / Poor sleep</option>
+                            <option value="wired">Restless / Wired but tired</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1.5">Hunger & Hydration</label>
+                        <select id="input-halt-food" class="w-full p-3 bg-slate-50 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none text-slate-700">
+                            <option value="fed">Eaten and hydrated recently</option>
+                            <option value="hungry">Haven't eaten in hours / Dehydrated</option>
+                            <option value="low-blood-sugar">Unsure / Skipping meals</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1.5">Physical Tension</label>
+                        <select id="input-halt-body" class="w-full p-3 bg-slate-50 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none text-slate-700">
+                            <option value="relaxed">Relatively relaxed</option>
+                            <option value="tense">Tight shoulders / Heavy chest / Clenched jaw</option>
+                            <option value="sluggish">Heaviness / Low muscle battery</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2: Emotion Granularity -->
+            <div class="wizard-step hidden" id="step-1">
+                <div class="flex items-center justify-between mb-2">
+                    <h2 class="text-xl font-bold text-slate-800">Naming the Feeling</h2>
+                    <span class="text-xs font-semibold text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-full">Step 2 of 4</span>
+                </div>
+                <p class="text-slate-600 text-sm mb-4">"Sad" or "down" is a big umbrella. Which core tone fits best right now?</p>
+                
+                <div class="space-y-2 mb-4">
+                    <label class="flex items-center p-3 border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50 transition-colors">
+                        <input type="radio" name="core-emotion" value="Heavy & Sad" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500" checked>
+                        <span class="ml-3 font-medium text-slate-700">Heavy & Sad</span>
+                        <span class="ml-auto text-xs text-slate-400">Low energy, teardrops</span>
+                    </label>
+                    <label class="flex items-center p-3 border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50 transition-colors">
+                        <input type="radio" name="core-emotion" value="Anxious & Overwhelmed" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500">
+                        <span class="ml-3 font-medium text-slate-700">Anxious & Overwhelmed</span>
+                        <span class="ml-auto text-xs text-slate-400">Racing thoughts, edge</span>
+                    </label>
+                    <label class="flex items-center p-3 border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50 transition-colors">
+                        <input type="radio" name="core-emotion" value="Burned Out & Numb" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500">
+                        <span class="ml-3 font-medium text-slate-700">Burned Out & Numb</span>
+                        <span class="ml-auto text-xs text-slate-400">Empty battery, disconnected</span>
+                    </label>
+                    <label class="flex items-center p-3 border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50 transition-colors">
+                        <input type="radio" name="core-emotion" value="Frustrated & Agitated" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500">
+                        <span class="ml-3 font-medium text-slate-700">Frustrated & Agitated</span>
+                        <span class="ml-auto text-xs text-slate-400">Irritated, restless</span>
+                    </label>
+                </div>
+
+                <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">Optional: Specific Sub-Emotions</label>
+                <input type="text" id="input-sub-emotion" class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none text-sm" placeholder="e.g., lonely, disappointed, left out, unmotivated">
+            </div>
+
+            <!-- Step 3: Subtle Stressors Scan -->
+            <div class="wizard-step hidden" id="step-2">
+                <div class="flex items-center justify-between mb-2">
+                    <h2 class="text-xl font-bold text-slate-800">Subtle Stressors</h2>
+                    <span class="text-xs font-semibold text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-full">Step 3 of 4</span>
+                </div>
+                <p class="text-slate-600 text-sm mb-4">Select any quiet triggers that might be draining you in the background:</p>
+                
+                <div class="space-y-2">
+                    <label class="flex items-center p-3 bg-slate-50 border border-slate-200 rounded-lg cursor-pointer hover:bg-indigo-50/50 transition-colors">
+                        <input type="checkbox" name="stressor" value="Screen / Over-stimulation" class="w-4 h-4 text-indigo-600 rounded focus:ring-indigo-500">
+                        <span class="ml-3 text-sm font-medium text-slate-700">Screen fatigue / Over-stimulation</span>
+                    </label>
+                    <label class="flex items-center p-3 bg-slate-50 border border-slate-200 rounded-lg cursor-pointer hover:bg-indigo-50/50 transition-colors">
+                        <input type="checkbox" name="stressor" value="Decision Fatigue" class="w-4 h-4 text-indigo-600 rounded focus:ring-indigo-500">
+                        <span class="ml-3 text-sm font-medium text-slate-700">Decision fatigue / Too many choices</span>
+                    </label>
+                    <label class="flex items-center p-3 bg-slate-50 border border-slate-200 rounded-lg cursor-pointer hover:bg-indigo-50/50 transition-colors">
+                        <input type="checkbox" name="stressor" value="Unspoken Expectations" class="w-4 h-4 text-indigo-600 rounded focus:ring-indigo-500">
+                        <span class="ml-3 text-sm font-medium text-slate-700">Unspoken pressure or high expectations</span>
+                    </label>
+                    <label class="flex items-center p-3 bg-slate-50 border border-slate-200 rounded-lg cursor-pointer hover:bg-indigo-50/50 transition-colors">
+                        <input type="checkbox" name="stressor" value="Lack of Movement or Sun" class="w-4 h-4 text-indigo-600 rounded focus:ring-indigo-500">
+                        <span class="ml-3 text-sm font-medium text-slate-700">Cooped up indoors / Lack of sunlight</span>
+                    </label>
+                    <label class="flex items-center p-3 bg-slate-50 border border-slate-200 rounded-lg cursor-pointer hover:bg-indigo-50/50 transition-colors">
+                        <input type="checkbox" name="stressor" value="Social Isolation" class="w-4 h-4 text-indigo-600 rounded focus:ring-indigo-500">
+                        <span class="ml-3 text-sm font-medium text-slate-700">Lack of meaningful connection</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Step 4: What You Need Most -->
+            <div class="wizard-step hidden" id="step-3">
+                <div class="flex items-center justify-between mb-2">
+                    <h2 class="text-xl font-bold text-slate-800">Your Current Need</h2>
+                    <span class="text-xs font-semibold text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-full">Step 4 of 4</span>
+                </div>
+                <p class="text-slate-600 text-sm mb-4">If you didn't have to fix anything right now, what would feel most gentle?</p>
+                
+                <div class="space-y-2">
+                    <label class="flex items-center p-3 border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50 transition-colors">
+                        <input type="radio" name="user-need" value="Zero-pressure Rest" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500" checked>
+                        <span class="ml-3 font-medium text-slate-700">Zero-pressure Rest</span>
+                        <span class="ml-auto text-xs text-slate-400">Blanket, warm drink, nap</span>
+                    </label>
+                    <label class="flex items-center p-3 border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50 transition-colors">
+                        <input type="radio" name="user-need" value="Gentle Distraction" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500">
+                        <span class="ml-3 font-medium text-slate-700">Gentle Distraction</span>
+                        <span class="ml-auto text-xs text-slate-400">Comfort movie, music, game</span>
+                    </label>
+                    <label class="flex items-center p-3 border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50 transition-colors">
+                        <input type="radio" name="user-need" value="Venting / Expressing" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500">
+                        <span class="ml-3 font-medium text-slate-700">Venting / Expressing</span>
+                        <span class="ml-auto text-xs text-slate-400">Journaling, talking to a friend</span>
+                    </label>
+                    <label class="flex items-center p-3 border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50 transition-colors">
+                        <input type="radio" name="user-need" value="A Tiny Micro-Step" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500">
+                        <span class="ml-3 font-medium text-slate-700">A Tiny Micro-Step</span>
+                        <span class="ml-auto text-xs text-slate-400">1 small easy task to feel clear</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Final Result Step -->
+            <div class="wizard-step hidden" id="step-4">
+                <div class="text-center mb-5">
+                    <div class="bg-indigo-100 text-indigo-600 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl font-bold">✨</div>
+                    <h2 class="text-2xl font-bold text-slate-800">Your Check-In Reflection</h2>
+                    <p class="text-slate-500 text-sm mt-1">Here is a snapshot of your state & your personalized path forward.</p>
+                </div>
+                
+                <div class="bg-indigo-50/80 border border-indigo-100 p-5 rounded-xl space-y-3 mb-4">
+                    <div>
+                        <h3 class="text-xs font-bold uppercase tracking-wider text-indigo-700">Primary Emotion State</h3>
+                        <p id="res-emotion" class="text-slate-800 font-medium text-base mt-0.5"></p>
+                    </div>
+                    <div>
+                        <h3 class="text-xs font-bold uppercase tracking-wider text-indigo-700">Physical Baseline</h3>
+                        <p id="res-physical" class="text-slate-700 text-sm mt-0.5"></p>
+                    </div>
+                    <div>
+                        <h3 class="text-xs font-bold uppercase tracking-wider text-indigo-700">Detected Background Stressors</h3>
+                        <p id="res-stressors" class="text-slate-700 text-sm mt-0.5"></p>
+                    </div>
+                </div>
+
+                <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
+                    <h3 class="font-semibold text-slate-800 text-sm mb-2">🌱 Recommended Next Steps:</h3>
+                    <ul id="res-actions" class="text-xs text-slate-600 space-y-2 list-disc list-inside"></ul>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="bg-slate-50 p-4 border-t border-slate-200 flex justify-between items-center">
+            <button id="btn-prev" class="px-5 py-2.5 text-slate-600 font-medium hover:text-slate-900 hidden transition-colors text-sm" onclick="prevStep()">← Back</button>
+            <div class="flex-grow"></div>
+            <button id="btn-next" class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2.5 rounded-lg font-medium shadow-sm transition-colors text-sm" onclick="nextStep()">Next Step →</button>
+            <button id="btn-restart" class="bg-slate-200 hover:bg-slate-300 text-slate-800 px-6 py-2.5 rounded-lg font-medium shadow-sm hidden transition-colors text-sm" onclick="restartWizard()">Start Over</button>
+        </div>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        let currentStep = 0;
+        const totalSteps = 4; // 0, 1, 2, 3 are input steps, 4 is the summary
+
+        function updateUI() {
+            // Hide all steps
+            document.querySelectorAll('.wizard-step').forEach(step => {
+                step.classList.add('hidden');
+                step.classList.remove('block');
+            });
+
+            // Show current step
+            document.getElementById(`step-${currentStep}`).classList.remove('hidden');
+            document.getElementById(`step-${currentStep}`).classList.add('block');
+
+            // Update Progress Bar
+            const progressPercentage = (currentStep / totalSteps) * 100;
+            document.getElementById('progress-bar').style.width = `${progressPercentage}%`;
+
+            // Navigation buttons logic
+            const btnPrev = document.getElementById('btn-prev');
+            const btnNext = document.getElementById('btn-next');
+            const btnRestart = document.getElementById('btn-restart');
+
+            if (currentStep === 0 || currentStep === totalSteps) {
+                btnPrev.classList.add('hidden');
+            } else {
+                btnPrev.classList.remove('hidden');
+            }
+
+            if (currentStep === totalSteps) {
+                btnNext.classList.add('hidden');
+                btnRestart.classList.remove('hidden');
+                generateReflection();
+            } else if (currentStep === totalSteps - 1) {
+                btnNext.innerText = "Complete Check-In ✨";
+                btnNext.classList.remove('hidden');
+                btnRestart.classList.add('hidden');
+            } else {
+                btnNext.innerText = "Next Step →";
+                btnNext.classList.remove('hidden');
+                btnRestart.classList.add('hidden');
+            }
+        }
+
+        function nextStep() {
+            if (currentStep < totalSteps) {
+                currentStep++;
+                updateUI();
+            }
+        }
+
+        function prevStep() {
+            if (currentStep > 0) {
+                currentStep--;
+                updateUI();
+            }
+        }
+
+        function restartWizard() {
+            // Reset input values
+            document.getElementById('input-sub-emotion').value = '';
+            document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+            
+            currentStep = 0;
+            updateUI();
+        }
+
+        function generateReflection() {
+            // HALT Data
+            const sleep = document.getElementById('input-halt-sleep').value;
+            const food = document.getElementById('input-halt-food').value;
+            const body = document.getElementById('input-halt-body').value;
+
+            // Core Emotion
+            const coreEmotionRadio = document.querySelector('input[name="core-emotion"]:checked');
+            const coreEmotion = coreEmotionRadio ? coreEmotionRadio.value : "Sad";
+            const subEmotion = document.getElementById('input-sub-emotion').value.trim();
+
+            // Stressors
+            const selectedStressors = Array.from(document.querySelectorAll('input[name="stressor"]:checked')).map(cb => cb.value);
+
+            // Need
+            const userNeedRadio = document.querySelector('input[name="user-need"]:checked');
+            const userNeed = userNeedRadio ? userNeedRadio.value : "Rest";
+
+            // Render Emotion String
+            let emotionText = coreEmotion;
+            if (subEmotion) {
+                emotionText += ` (${subEmotion})`;
+            }
+            document.getElementById('res-emotion').innerText = emotionText;
+
+            // Render Physical Baseline
+            document.getElementById('res-physical').innerText = `Sleep/Energy: ${sleep} • Fuel: ${food} • Body State: ${body}`;
+
+            // Render Stressors
+            document.getElementById('res-stressors').innerText = selectedStressors.length > 0 ? selectedStressors.join(', ') : "None marked";
+
+            // Build Actions
+            const actionsList = document.getElementById('res-actions');
+            actionsList.innerHTML = '';
+
+            const actionSuggestions = [];
+
+            if (food === 'hungry' || food === 'low-blood-sugar') {
+                actionSuggestions.push("Grab a glass of water and a low-effort snack (e.g., fruit, toast, nuts).");
+            }
+            if (sleep === 'exhausted') {
+                actionSuggestions.push("Give yourself explicit permission to lower your standards for today. Prioritize rest.");
+            }
+            if (selectedStressors.includes("Screen / Over-stimulation")) {
+                actionSuggestions.push("Take 15 minutes away from screens—close your eyes or look out a window.");
+            }
+            if (userNeed === "Zero-pressure Rest") {
+                actionSuggestions.push("Wrap up in a blanket with a warm beverage and allow yourself to just exist for a bit.");
+            } else if (userNeed === "Gentle Distraction") {
+                actionSuggestions.push("Put on a comforting podcast, ambient music, or a cozy show without feeling guilty.");
+            } else if (userNeed === "Venting / Expressing") {
+                actionSuggestions.push("Jot down whatever thoughts come up in a quick stream-of-consciousness brain dump, then close the notebook.");
+            } else {
+                actionSuggestions.push("Pick 1 tiny 2-minute task (e.g., clear 3 items off your desk) then immediately stop.");
+            }
+
+            actionSuggestions.push("Remember: Feeling down without a clear reason is completely normal. Don't force yourself to 'fix' it immediately.");
+
+            actionSuggestions.forEach(action => {
+                const li = document.createElement('li');
+                li.innerText = action;
+                actionsList.appendChild(li);
+            });
+        }
+    </script>
+</body>
+</html>

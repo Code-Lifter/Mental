@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEAR MAN Script Builder</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 min-h-screen flex items-center justify-center p-4 font-sans text-slate-800">
+
+    <div class="bg-white max-w-lg w-full rounded-2xl shadow-xl overflow-hidden">
+        <!-- Header -->
+        <div class="bg-teal-700 p-6 text-white text-center">
+            <h1 class="text-2xl font-bold">DEAR MAN Script Builder</h1>
+            <p class="text-teal-100 text-sm mt-1">Structure your boundary to neutralize emotional conflict.</p>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="bg-slate-200 h-1.5 w-full">
+            <div id="progress-bar" class="bg-teal-500 h-1.5 transition-all duration-300 w-0"></div>
+        </div>
+
+        <!-- Wizard Content -->
+        <div class="p-6 md:p-8">
+            
+            <!-- Step 1: Describe -->
+            <div class="wizard-step block" id="step-0">
+                <h2 class="text-xl font-bold mb-2">Describe <span class="text-slate-400 font-normal text-sm">(1/7)</span></h2>
+                <p class="text-slate-600 mb-4">State the objective facts of the situation. No judgments, no emotions. Just the undeniable truth.</p>
+                <label class="block text-sm font-medium mb-1">The facts are...</label>
+                <input type="text" id="input-d" class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none" placeholder="e.g., You are asking me to change my schedule on short notice">
+            </div>
+
+            <!-- Step 2: Express -->
+            <div class="wizard-step hidden" id="step-1">
+                <h2 class="text-xl font-bold mb-2">Express <span class="text-slate-400 font-normal text-sm">(2/7)</span></h2>
+                <p class="text-slate-600 mb-4">State how this situation impacts you plainly and briefly. Do not over-explain.</p>
+                <label class="block text-sm font-medium mb-1">This impacts me because...</label>
+                <input type="text" id="input-e" class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none" placeholder="e.g., I already have commitments I cannot move">
+            </div>
+
+            <!-- Step 3: Assert -->
+            <div class="wizard-step hidden" id="step-2">
+                <h2 class="text-xl font-bold mb-2">Assert <span class="text-slate-400 font-normal text-sm">(3/7)</span></h2>
+                <p class="text-slate-600 mb-4">State your boundary or request clearly and directly. Do not hint or expect them to guess.</p>
+                <label class="block text-sm font-medium mb-1">I am stating that...</label>
+                <input type="text" id="input-a" class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none" placeholder="e.g., I will not be able to do this today, but I can tomorrow">
+            </div>
+
+            <!-- Step 4: Reinforce -->
+            <div class="wizard-step hidden" id="step-3">
+                <h2 class="text-xl font-bold mb-2">Reinforce <span class="text-slate-400 font-normal text-sm">(4/7)</span></h2>
+                <p class="text-slate-600 mb-4">Explain the logical, positive outcome of reaching a mutual agreement or respecting your boundary.</p>
+                <label class="block text-sm font-medium mb-1">The positive outcome is...</label>
+                <input type="text" id="input-r" class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none" placeholder="e.g., By doing it tomorrow, it will get my full, undivided attention">
+            </div>
+
+            <!-- Step 5: Mindful -->
+            <div class="wizard-step hidden" id="step-4">
+                <h2 class="text-xl font-bold mb-2">Mindful <span class="text-slate-400 font-normal text-sm">(5/7)</span></h2>
+                <p class="text-slate-600 mb-4">What is your "broken record" phrase? If they attack you emotionally, you will ignore the bait and repeat this.</p>
+                <label class="block text-sm font-medium mb-1">My broken record phrase is...</label>
+                <input type="text" id="input-m" class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none" placeholder="e.g., I hear you are frustrated, but my availability hasn't changed.">
+            </div>
+
+            <!-- Step 6: Appear Confident -->
+            <div class="wizard-step hidden" id="step-5">
+                <h2 class="text-xl font-bold mb-2">Appear Confident <span class="text-slate-400 font-normal text-sm">(6/7)</span></h2>
+                <p class="text-slate-600 mb-4">How will you physically anchor yourself to avoid shrinking or getting defensive?</p>
+                <label class="block text-sm font-medium mb-1">I will maintain confidence by...</label>
+                <input type="text" id="input-ac" class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none" placeholder="e.g., Keeping my voice flat, lowering my volume, and holding eye contact">
+            </div>
+
+            <!-- Step 7: Negotiate -->
+            <div class="wizard-step hidden" id="step-6">
+                <h2 class="text-xl font-bold mb-2">Negotiate <span class="text-slate-400 font-normal text-sm">(7/7)</span></h2>
+                <p class="text-slate-600 mb-4">What is a workable, logical compromise you can offer that still completely respects your boundary?</p>
+                <label class="block text-sm font-medium mb-1">I am willing to offer...</label>
+                <input type="text" id="input-n" class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none" placeholder="e.g., You can choose if I tackle part A or part B first tomorrow">
+            </div>
+
+            <!-- Final Result Step -->
+            <div class="wizard-step hidden" id="step-7">
+                <div class="text-center mb-6">
+                    <div class="bg-teal-100 text-teal-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl">📋</div>
+                    <h2 class="text-2xl font-bold">Your DEAR MAN Script</h2>
+                    <p class="text-slate-600 mt-2">Memorize the script. Anchor your mindset.</p>
+                </div>
+                
+                <div class="space-y-4">
+                    <div class="bg-teal-50 border border-teal-200 p-4 rounded-xl">
+                        <h3 class="font-bold text-teal-800 text-sm uppercase tracking-wider mb-2">What to say:</h3>
+                        <p id="final-script-text" class="text-slate-800 font-medium"></p>
+                    </div>
+
+                    <div class="bg-slate-100 border border-slate-200 p-4 rounded-xl">
+                        <h3 class="font-bold text-slate-500 text-sm uppercase tracking-wider mb-2">How to hold your ground:</h3>
+                        <ul id="final-mindset-text" class="list-disc pl-5 text-slate-700 space-y-1"></ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="bg-slate-50 p-4 border-t border-slate-200 flex justify-between">
+            <button id="btn-prev" class="px-5 py-2.5 text-slate-600 font-medium hover:text-slate-900 hidden transition-colors" onclick="prevStep()">← Back</button>
+            <div class="flex-grow"></div>
+            <button id="btn-next" class="bg-teal-600 hover:bg-teal-700 text-white px-6 py-2.5 rounded-lg font-medium shadow-sm transition-colors" onclick="nextStep()">Next Step →</button>
+            <button id="btn-restart" class="bg-slate-200 hover:bg-slate-300 text-slate-800 px-6 py-2.5 rounded-lg font-medium shadow-sm hidden transition-colors" onclick="restartWizard()">Start Over</button>
+        </div>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        let currentStep = 0;
+        const totalSteps = 7; // 0 through 6 are input steps, 7 is the result
+
+        function updateUI() {
+            // Hide all steps
+            document.querySelectorAll('.wizard-step').forEach(step => {
+                step.classList.add('hidden');
+                step.classList.remove('block');
+            });
+
+            // Show current step
+            document.getElementById(`step-${currentStep}`).classList.remove('hidden');
+            document.getElementById(`step-${currentStep}`).classList.add('block');
+
+            // Update Progress Bar
+            const progressPercentage = (currentStep / totalSteps) * 100;
+            document.getElementById('progress-bar').style.width = `${progressPercentage}%`;
+
+            // Handle Buttons
+            const btnPrev = document.getElementById('btn-prev');
+            const btnNext = document.getElementById('btn-next');
+            const btnRestart = document.getElementById('btn-restart');
+
+            // Back button logic
+            if (currentStep === 0 || currentStep === totalSteps) {
+                btnPrev.classList.add('hidden');
+            } else {
+                btnPrev.classList.remove('hidden');
+            }
+
+            // Next / Generate / Restart button logic
+            if (currentStep === totalSteps) {
+                btnNext.classList.add('hidden');
+                btnRestart.classList.remove('hidden');
+                generateDearManText();
+            } else if (currentStep === totalSteps - 1) {
+                btnNext.innerText = "Build Script ⚡";
+                btnNext.classList.remove('hidden');
+                btnRestart.classList.add('hidden');
+            } else {
+                btnNext.innerText = "Next Step →";
+                btnNext.classList.remove('hidden');
+                btnRestart.classList.add('hidden');
+            }
+        }
+
+        function nextStep() {
+            // Input Validation
+            const inputs = ['input-d', 'input-e', 'input-a', 'input-r', 'input-m', 'input-ac', 'input-n'];
+            if (currentStep < totalSteps) {
+                const currentInput = document.getElementById(inputs[currentStep]).value.trim();
+                if (!currentInput) { 
+                    alert("Please fill out this step to continue. Every part of the framework is required to neutralize the argument.");
+                    return;
+                }
+                currentStep++;
+                updateUI();
+            }
+        }
+
+        function prevStep() {
+            if (currentStep > 0) {
+                currentStep--;
+                updateUI();
+            }
+        }
+
+        function restartWizard() {
+            // Clear inputs
+            const inputs = ['input-d', 'input-e', 'input-a', 'input-r', 'input-m', 'input-ac', 'input-n'];
+            inputs.forEach(id => document.getElementById(id).value = '');
+            
+            currentStep = 0;
+            updateUI();
+        }
+
+        function generateDearManText() {
+            const d = document.getElementById('input-d').value.trim();
+            const e = document.getElementById('input-e').value.trim();
+            const a = document.getElementById('input-a').value.trim();
+            const r = document.getElementById('input-r').value.trim();
+            const m = document.getElementById('input-m').value.trim();
+            const ac = document.getElementById('input-ac').value.trim();
+            const n = document.getElementById('input-n').value.trim();
+
+            // Format the spoken script
+            const script = `"${d}. ${e}. Therefore, ${a}. ${r}."`;
+            document.getElementById('final-script-text').innerText = script;
+
+            // Format the mindset / fallback list
+            const mindsetList = `
+                <li><strong>If they attack or distract:</strong> Ignore it and repeat: <em>"${m}"</em></li>
+                <li><strong>To prevent power games:</strong> ${ac}.</li>
+                <li><strong>If an Adult-to-Adult solution is needed:</strong> Offer: <em>"${n}"</em>.</li>
+            `;
+            document.getElementById('final-mindset-text').innerHTML = mindsetList;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashback Management Wizard</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 min-h-screen flex items-center justify-center p-4 font-sans text-slate-800">
+
+    <div class="bg-white max-w-2xl w-full rounded-2xl shadow-xl overflow-hidden">
+        <!-- Header -->
+        <div class="bg-teal-600 p-6 text-white text-center">
+            <h1 class="text-2xl font-bold">Flashback Management Guide</h1>
+            <p class="text-teal-100 text-sm mt-1">13 Grounding Steps to bring you back to the safety of the present.</p>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="bg-slate-200 h-1.5 w-full">
+            <div id="progress-bar" class="bg-teal-500 h-1.5 transition-all duration-300 w-0"></div>
+        </div>
+
+        <!-- Wizard Content -->
+        <div class="p-6 md:p-8 min-h-[300px] flex flex-col justify-center">
+            
+            <!-- Step 1 -->
+            <div class="wizard-step block" id="step-0">
+                <h2 class="text-xl font-bold mb-4 text-teal-800">1. Acknowledge <span class="text-slate-400 font-normal text-sm">(1/13)</span></h2>
+                <div class="bg-teal-50 border-l-4 border-teal-500 p-4 mb-4 rounded-r">
+                    <p class="text-lg font-medium text-teal-900">Say to yourself: "I am having a flashback."</p>
+                </div>
+                <p class="text-slate-600 leading-relaxed">Flashbacks take us into a timeless part of the psyche that feels as helpless, hopeless and surrounded by danger as we were in childhood. The feelings and sensations you are experiencing are past memories that cannot hurt you now.</p>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="wizard-step hidden" id="step-1">
+                <h2 class="text-xl font-bold mb-4 text-teal-800">2. Ground in the Present <span class="text-slate-400 font-normal text-sm">(2/13)</span></h2>
+                <div class="bg-teal-50 border-l-4 border-teal-500 p-4 mb-4 rounded-r">
+                    <p class="text-lg font-medium text-teal-900">Remind yourself: "I feel afraid but I am not in danger! I am safe now, here in the present."</p>
+                </div>
+                <p class="text-slate-600 leading-relaxed">Remember you are now in the safety of the present, far from the danger of the past.</p>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="wizard-step hidden" id="step-2">
+                <h2 class="text-xl font-bold mb-4 text-teal-800">3. Establish Boundaries <span class="text-slate-400 font-normal text-sm">(3/13)</span></h2>
+                <p class="text-slate-600 leading-relaxed text-lg mb-2">Own your right/need to have boundaries.</p>
+                <p class="text-slate-600 leading-relaxed">Remind yourself that you do not have to allow anyone to mistreat you; you are free to leave dangerous situations and protest unfair behavior.</p>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="wizard-step hidden" id="step-3">
+                <h2 class="text-xl font-bold mb-4 text-teal-800">4. Comfort the Inner Child <span class="text-slate-400 font-normal text-sm">(4/13)</span></h2>
+                <p class="text-slate-600 leading-relaxed text-lg mb-2">Speak reassuringly to the Inner Child.</p>
+                <p class="text-slate-600 leading-relaxed">The child needs to know that you love her unconditionally—that she can come to you for comfort and protection when she feels lost and scared.</p>
+            </div>
+
+            <!-- Step 5 -->
+            <div class="wizard-step hidden" id="step-4">
+                <h2 class="text-xl font-bold mb-4 text-teal-800">5. Deconstruct Eternity Thinking <span class="text-slate-400 font-normal text-sm">(5/13)</span></h2>
+                <p class="text-slate-600 leading-relaxed mb-4">In childhood, fear and abandonment felt endless - a safer future was unimaginable.</p>
+                <div class="bg-teal-50 p-4 rounded-lg">
+                    <p class="text-teal-900 font-medium">Remember the flashback will pass as it has many times before.</p>
+                </div>
+            </div>
+
+            <!-- Step 6 -->
+            <div class="wizard-step hidden" id="step-5">
+                <h2 class="text-xl font-bold mb-4 text-teal-800">6. Remember Your Adult Resources <span class="text-slate-400 font-normal text-sm">(6/13)</span></h2>
+                <p class="text-slate-600 leading-relaxed mb-4">Remind yourself that you are in an adult body with allies, skills and resources to protect you that you never had as a child.</p>
+                <p class="text-sm text-slate-500 italic">[Feeling small and little is a sure sign of a flashback]</p>
+            </div>
+
+            <!-- Step 7 -->
+            <div class="wizard-step hidden" id="step-6">
+                <h2 class="text-xl font-bold mb-4 text-teal-800">7. Ease Back Into Your Body <span class="text-slate-400 font-normal text-sm">(7/13)</span></h2>
+                <p class="text-slate-600 mb-4 font-medium">Fear launches us into 'heady' worrying, or numbing and spacing out.</p>
+                <ul class="space-y-3 text-sm text-slate-600">
+                    <li class="flex items-start"><span class="font-bold mr-2">[a]</span> <span><strong>Gently ask your body to Relax:</strong> feel each of your major muscle groups and softly encourage them to relax. (Tightened musculature sends unnecessary danger signals to the brain)</span></li>
+                    <li class="flex items-start"><span class="font-bold mr-2">[b]</span> <span><strong>Breathe deeply and slowly.</strong> (Holding the breath also signals danger).</span></li>
+                    <li class="flex items-start"><span class="font-bold mr-2">[c]</span> <span><strong>Slow down:</strong> rushing presses the psyche's panic button.</span></li>
+                    <li class="flex items-start"><span class="font-bold mr-2">[d]</span> <span><strong>Find a safe place to unwind and soothe yourself:</strong> wrap yourself in a blanket, hold a stuffed animal, lie down in a closet or a bath, take a nap.</span></li>
+                    <li class="flex items-start"><span class="font-bold mr-2">[e]</span> <span><strong>Feel the fear in your body without reacting to it.</strong> Fear is just an energy in your body that cannot hurt you if you do not run from it or react self-destructively to it.</span></li>
+                </ul>
+            </div>
+
+            <!-- Step 8 -->
+            <div class="wizard-step hidden" id="step-7">
+                <h2 class="text-xl font-bold mb-4 text-teal-800">8. Resist the Inner Critic <span class="text-slate-400 font-normal text-sm">(8/13)</span></h2>
+                <p class="text-slate-600 mb-4 font-medium">Resist the Inner Critic's Drasticizing and Catastrophizing:</p>
+                <ul class="space-y-4 text-sm text-slate-600">
+                    <li class="bg-slate-50 p-3 rounded border border-slate-100">
+                        <strong>[a] Use thought-stopping</strong> to halt its endless exaggeration of danger and constant planning to control the uncontrollable. Refuse to shame, hate or abandon yourself. Channel the anger of self-attack into saying NO to unfair self-criticism.
+                    </li>
+                    <li class="bg-slate-50 p-3 rounded border border-slate-100">
+                        <strong>[b] Use thought-substitution</strong> to replace negative thinking with a memorized list of your qualities and accomplishments.
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Step 9 -->
+            <div class="wizard-step hidden" id="step-8">
+                <h2 class="text-xl font-bold mb-4 text-teal-800">9. Allow Yourself to Grieve <span class="text-slate-400 font-normal text-sm">(9/13)</span></h2>
+                <p class="text-slate-600 leading-relaxed mb-3">Flashbacks are opportunities to release old, unexpressed feelings of fear, hurt, and abandonment, and to validate - and then soothe - the child's past experience of helplessness and hopelessness.</p>
+                <p class="text-slate-600 leading-relaxed font-medium">Healthy grieving can turn our tears into self-compassion and our anger into self-protection.</p>
+            </div>
+
+            <!-- Step 10 -->
+            <div class="wizard-step hidden" id="step-9">
+                <h2 class="text-xl font-bold mb-4 text-teal-800">10. Seek Support <span class="text-slate-400 font-normal text-sm">(10/13)</span></h2>
+                <p class="text-slate-600 leading-relaxed mb-3">Cultivate safe relationships and seek support. Take time alone when you need it, but don't let shame isolate you. Feeling shame doesn't mean you are shameful.</p>
+                <p class="text-slate-600 leading-relaxed">Educate your intimates about flashbacks and ask them to help you talk and feel your way through them.</p>
+            </div>
+
+            <!-- Step 11 -->
+            <div class="wizard-step hidden" id="step-10">
+                <h2 class="text-xl font-bold mb-4 text-teal-800">11. Identify Triggers <span class="text-slate-400 font-normal text-sm">(11/13)</span></h2>
+                <p class="text-slate-600 leading-relaxed mb-3">Learn to identify the types of triggers that lead to flashbacks.</p>
+                <p class="text-slate-600 leading-relaxed">Avoid unsafe people, places, activities and triggering mental processes. Practice preventive maintenance with these steps when triggering situations are unavoidable.</p>
+            </div>
+
+            <!-- Step 12 -->
+            <div class="wizard-step hidden" id="step-11">
+                <h2 class="text-xl font-bold mb-4 text-teal-800">12. Figure Out the Root <span class="text-slate-400 font-normal text-sm">(12/13)</span></h2>
+                <p class="text-slate-600 leading-relaxed mb-3">Figure out what you are flashing back to.</p>
+                <p class="text-slate-600 leading-relaxed">Flashbacks are opportunities to discover, validate and heal our wounds from past abuse and abandonment. They also point to our still unmet developmental needs and can provide motivation to get them met.</p>
+            </div>
+
+            <!-- Step 13 -->
+            <div class="wizard-step hidden" id="step-12">
+                <h2 class="text-xl font-bold mb-4 text-teal-800">13. Be Patient <span class="text-slate-400 font-normal text-sm">(13/13)</span></h2>
+                <p class="text-slate-600 leading-relaxed mb-3">Be patient with a slow recovery process: it takes time in the present to become un-adrenalized, and considerable time in the future to gradually decrease the intensity, duration and frequency of flashbacks.</p>
+                <div class="bg-teal-50 border-l-4 border-teal-500 p-4 rounded-r">
+                    <p class="text-teal-900 font-medium">Real recovery is a gradually progressive process [often two steps forward, one step back], not an attained salvation fantasy. Don't beat yourself up for having a flashback.</p>
+                </div>
+            </div>
+
+            <!-- Final Result Step -->
+            <div class="wizard-step hidden" id="step-13">
+                <div class="text-center mb-6">
+                    <div class="bg-teal-100 text-teal-600 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 text-4xl shadow-sm">🌿</div>
+                    <h2 class="text-2xl font-bold text-teal-900">You Are Safe</h2>
+                    <p class="text-slate-600 mt-3 max-w-md mx-auto">You have walked through the 13 steps. Take a deep breath. You are in the present moment, and the flashback is passing.</p>
+                </div>
+                
+                <div class="bg-slate-50 border border-slate-200 p-5 rounded-xl text-center">
+                    <p class="text-sm text-slate-500">Keep this tool bookmarked for whenever you need a reminder that you are safe, grounded, and no longer in danger.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="bg-slate-50 p-4 border-t border-slate-200 flex justify-between items-center">
+            <button id="btn-prev" class="px-5 py-2.5 text-slate-500 font-medium hover:text-slate-800 hidden transition-colors" onclick="prevStep()">← Back</button>
+            <div class="flex-grow text-center text-xs font-medium text-slate-400 tracking-widest uppercase" id="step-indicator">
+                Step 1 of 13
+            </div>
+            <button id="btn-next" class="bg-teal-600 hover:bg-teal-700 text-white px-6 py-2.5 rounded-lg font-medium shadow-sm transition-colors" onclick="nextStep()">Next Step →</button>
+            <button id="btn-restart" class="bg-slate-200 hover:bg-slate-300 text-slate-800 px-6 py-2.5 rounded-lg font-medium shadow-sm hidden transition-colors" onclick="restartWizard()">Start Over</button>
+        </div>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        let currentStep = 0;
+        const totalSteps = 13; // 0 through 12 are the content steps, 13 is the finish screen
+
+        function updateUI() {
+            // Hide all steps
+            document.querySelectorAll('.wizard-step').forEach(step => {
+                step.classList.add('hidden');
+                step.classList.remove('block');
+            });
+
+            // Show current step
+            document.getElementById(`step-${currentStep}`).classList.remove('hidden');
+            document.getElementById(`step-${currentStep}`).classList.add('block');
+
+            // Update Progress Bar
+            const progressPercentage = (currentStep / totalSteps) * 100;
+            document.getElementById('progress-bar').style.width = `${progressPercentage}%`;
+
+            // Update Step Indicator
+            const indicator = document.getElementById('step-indicator');
+            if (currentStep < totalSteps) {
+                indicator.innerText = `Step ${currentStep + 1} of 13`;
+                indicator.classList.remove('hidden');
+            } else {
+                indicator.classList.add('hidden');
+            }
+
+            // Handle Buttons
+            const btnPrev = document.getElementById('btn-prev');
+            const btnNext = document.getElementById('btn-next');
+            const btnRestart = document.getElementById('btn-restart');
+
+            // Back button logic
+            if (currentStep === 0 || currentStep === totalSteps) {
+                btnPrev.classList.add('hidden');
+            } else {
+                btnPrev.classList.remove('hidden');
+            }
+
+            // Next / Finish / Restart button logic
+            if (currentStep === totalSteps) {
+                // We are on the result page
+                btnNext.classList.add('hidden');
+                btnRestart.classList.remove('hidden');
+            } else if (currentStep === totalSteps - 1) {
+                // On the last step
+                btnNext.innerText = "Complete Guide ✓";
+                btnNext.classList.remove('hidden');
+                btnRestart.classList.add('hidden');
+            } else {
+                // Standard steps
+                btnNext.innerText = "Next Step →";
+                btnNext.classList.remove('hidden');
+                btnRestart.classList.add('hidden');
+            }
+        }
+
+        function nextStep() {
+            if (currentStep < totalSteps) {
+                currentStep++;
+                updateUI();
+            }
+        }
+
+        function prevStep() {
+            if (currentStep > 0) {
+                currentStep--;
+                updateUI();
+            }
+        }
+
+        function restartWizard() {
+            currentStep = 0;
+            updateUI();
+        }
+        
+        // Initialize UI
+        updateUI();
+    </script>
+</body>
+</html>
